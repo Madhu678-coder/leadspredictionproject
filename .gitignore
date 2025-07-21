@@ -1,0 +1,44 @@
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+ 
+# Virtual environments
+leadscoring_venv/
+airflow_env/
+.env/
+ 
+# IDE/Editor settings
+.vscode/
+ 
+# OS files
+.DS_Store
+Thumbs.db
+ 
+# Jupyter data
+.ipynb_checkpoints/
+ 
+# Model artifacts
+saved_models/
+*.pkl
+*.h5
+*.joblib
+ 
+# Data and outputs
+outputs/
+uploads/
+drift_reports/
+mlruns/
+shap_outputs/
+Eda Reports/
+aws screenshots/
+ 
+# Data files
+sample_leads.csv
+sample_leads_renamed.csv
+Lead Scoring.csv
+ 
+# Documentation
+*.docx
+*.pdf

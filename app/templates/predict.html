@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lead Conversion Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(110deg, #f1f8fe 37%, #e2eafc 100%);
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 94%;
+            max-width: 420px;
+            margin: 60px auto 0 auto;
+            padding: 32px 27px 28px 27px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 3px 32px 0 rgba(10,38,78,0.13), 0 2px 4px rgba(10,38,78,.08);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #153061;
+            letter-spacing: .01em;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 7px;
+            font-size: 1.17rem;
+            text-align: center;
+            background: linear-gradient(90deg, #e3f7fd 70%, #d6edff 100%);
+            border: 1.5px solid #75b8ef;
+            color: #175891;
+            font-weight: 500;
+            box-shadow: 0 2px 14px -8px #8ecae6;
+            letter-spacing: .01em;
+        }
+        /* (Optional extra styling for 'positive' or 'negative' result messages)
+        .result.positive { background: #eafbe7; color: #296e28; border-color: #75e048;}
+        .result.negative { background: #ffefef; color: #bb2f2c; border-color: #eea0a7;}
+        */
+        .back-link {
+            margin-top: 24px;
+            display: block;
+            text-align: center;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: #3a7ddd;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color .18s;
+        }
+        .back-link a:hover {
+            color: #174b95;
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px 8px 12px 8px;
+                min-width: 0;
+                width: 100%;
+            }
+            h2 { font-size: 1.18rem;}
+            .result { font-size: 1.02rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Lead Conversion Prediction</h2>
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text|safe }}
+        </div>
+    {% endif %}
+    <div class="back-link">
+        <a href="/">&#8592; Predict another lead</a>
+    </div>
+</div>
+</body>
+</html>

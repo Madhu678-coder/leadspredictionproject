@@ -1,0 +1,15 @@
+pandas
+numpy
+SQLAlchemy
+psycopg2-binary
+scikit-learn
+xgboost
+lightgbm
+scipy
+matplotlib
+seaborn
+shap
+evidently
+mlflow
+Flask
+joblib

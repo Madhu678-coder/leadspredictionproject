@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: leadscoring
+Version: 0.1
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: mlflow
+Dynamic: requires-dist
