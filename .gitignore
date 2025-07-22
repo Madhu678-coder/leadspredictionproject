@@ -33,7 +33,12 @@ mlruns/
 shap_outputs/
 Eda Reports/
 aws screenshots/
- 
+mlartifacts/
+
+models/
+*.pkl
+*.h5
+*.joblib
 # Data files
 sample_leads.csv
 sample_leads_renamed.csv

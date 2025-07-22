@@ -7,7 +7,7 @@ from ml.datadrift import generate_and_log_drift_reports
 from ml.prediction import load_and_predict_from_registry_auto
 from data.data_preprocessing.mapping import map_categorical_columns, mapping_transformer
 from data.data_preprocessing.pipeline_builder import build_full_pipeline
-
+# from imblearn.over_sampling import SMOTE
 
 def run_lead_prediction_pipeline(
     csv_file_path=None,
@@ -45,6 +45,10 @@ def run_lead_prediction_pipeline(
         X_temp, y_temp, test_size=0.25, random_state=42, stratify=y_temp
     )
 
+    # sm = SMOTE(random_state=42)
+    # X_train, y_train = sm.fit_resample(X_train, y_train)
+
+
     # 5. Data drift reports
     feature_names = X_train.columns if hasattr(X_train, "columns") else None
     generate_and_log_drift_reports(
@@ -57,20 +61,21 @@ def run_lead_prediction_pipeline(
 
     # 6. Model training & SHAP
     results_df, best_models = train_log_and_shap_classification(
-        X_train, y_train, X_val, y_val, preprocessor,
-        save_dir=save_dir, shap_dir=shap_dir
+    X_train, y_train, X_val, y_val, preprocessor,
+    save_dir=save_dir, shap_dir=shap_dir
     )
 
+
     # 7. Save & Register best model and preprocessor
-    X_train_val = pd.concat([X_train, X_val])
-    y_train_val = pd.concat([y_train, y_val])
+    X_train_val = pd.concat([X_train, X_val,X_test])
+    y_train_val = pd.concat([y_train, y_val,y_test])
     save_and_register_best_model_pipeline(
         results_df, best_models, X_train_val, y_train_val, preprocessor,
         save_dir=save_dir, experiment_name=experiment_name
     )
     # will load latest model in Staging
     y_pred_df = load_and_predict_from_registry_auto(X_test, stage="Production")
-    print(y_pred_df.head())
+    ##print(y_pred_df.head())
     
 # if you later move it to Production:
 # y_pred = load_and_predict_from_registry_auto(X_test_raw, stage="Production")

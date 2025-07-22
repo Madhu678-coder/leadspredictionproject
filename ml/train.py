@@ -67,7 +67,7 @@ def train_log_and_shap_classification(
             param_grid=param_grid,
             cv=StratifiedKFold(n_splits=5, shuffle=True, random_state=42),
             scoring='f1',
-            n_jobs=-1,
+            n_jobs=1,
             verbose=1
         )
         search.fit(X_train, y_train)

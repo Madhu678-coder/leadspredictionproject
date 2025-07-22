@@ -6,7 +6,7 @@ from sklearn.pipeline import Pipeline
 from mlflow.tracking import MlflowClient
 
 def save_and_register_best_model_pipeline(
-    results_df, best_models, X_train_val, y_train_val, preprocessor,
+    results_df, best_models, X, y, preprocessor,
     save_dir="saved_models", experiment_name="LeadScoring_Simplified"
 ):
     os.makedirs(save_dir, exist_ok=True)
@@ -22,7 +22,7 @@ def save_and_register_best_model_pipeline(
         ("preprocessing", preprocessor),
         ("model", best_model.named_steps['model'] if hasattr(best_model, 'named_steps') else best_model)
     ])
-    final_pipeline.fit(X_train_val, y_train_val)
+    final_pipeline.fit(X,y)
 
     # 3. Save final model pipeline locally
     model_path = os.path.join(save_dir, f"final_{best_model_name}_pipeline.pkl")
